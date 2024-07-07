@@ -1,56 +1,34 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class StudentGradeTracker {
+public class StudentGrades {
     public static void main(String[] args) {
+        ArrayList<Integer> grades = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Double> grades = new ArrayList<>();
 
-        System.out.println("Enter student grades. Type 'done' to finish.");
-
+        String input;
         while (true) {
-            String input = scanner.nextLine();
+            System.out.print("Enter student grade (or type 'done' to finish): ");
+            input = scanner.nextLine();
             if (input.equalsIgnoreCase("done")) {
                 break;
             }
             try {
-                double grade = Double.parseDouble(input);
+                int grade = Integer.parseInt(input);
                 grades.add(grade);
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number or 'done' to finish.");
-            }
-        }import java.util.ArrayList;
-import java.util.Scanner;
-
-public class StudentGradeTracker {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<Double> grades = new ArrayList<>();
-
-        System.out.println("Enter student grades. Type 'done' to finish.");
-
-        while (true) {
-            String input = scanner.nextLine();
-            if (input.equalsIgnoreCase("done")) {
-                break;
-            }
-            try {
-                double grade = Double.parseDouble(input);
-                grades.add(grade);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number or 'done' to finish.");
+                System.out.println("Invalid input. Please enter a valid integer grade.");
             }
         }
 
         if (grades.isEmpty()) {
             System.out.println("No grades entered.");
         } else {
-            double total = 0;
-            double highest = Double.MIN_VALUE;
-            double lowest = Double.MAX_VALUE;
-
-            for (double grade : grades) {
-                total += grade;
+            int sum = 0;
+            int highest = grades.get(0);
+            int lowest = grades.get(0);
+            for (int grade : grades) {
+                sum += grade;
                 if (grade > highest) {
                     highest = grade;
                 }
@@ -58,38 +36,7 @@ public class StudentGradeTracker {
                     lowest = grade;
                 }
             }
-
-            double average = total / grades.size();
-
-            System.out.println("Average grade: " + average);
-            System.out.println("Highest grade: " + highest);
-            System.out.println("Lowest grade: " + lowest);
-        }
-
-        scanner.close();
-    }
-}
-
-
-        if (grades.isEmpty()) {
-            System.out.println("No grades entered.");
-        } else {
-            double total = 0;
-            double highest = Double.MIN_VALUE;
-            double lowest = Double.MAX_VALUE;
-
-            for (double grade : grades) {
-                total += grade;
-                if (grade > highest) {
-                    highest = grade;
-                }
-                if (grade < lowest) {
-                    lowest = grade;
-                }
-            }
-
-            double average = total / grades.size();
-
+            double average = sum / (double) grades.size();
             System.out.println("Average grade: " + average);
             System.out.println("Highest grade: " + highest);
             System.out.println("Lowest grade: " + lowest);
